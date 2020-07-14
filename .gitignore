@@ -1,3 +1,8 @@
+# Just for local development
+.vscode/settings.json
+.env
+*.temp.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
