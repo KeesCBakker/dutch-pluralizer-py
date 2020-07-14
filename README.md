@@ -20,6 +20,6 @@ pip install dutch-pluralizer
 
 
 ## Development
-If you want to contribute to local development, please consult <a href="">the local development page</a>.
+If you want to contribute to local development, please consult <a href="DEV.md">the local development page</a>.
 
 
