@@ -1,6 +1,8 @@
 import argparse
 from pprint import pprint
-from . import pluralize, pluralize_advanced, singularize
+from . import pluralize, pluralize_advanced, singularize, could_be_plural
+
+__all__ = ['pluralize', 'pluralize_advanced', 'singularize', 'could_be_plural']
 
 
 def print_result(answer: str, verbose: bool, action: str, word: str):
