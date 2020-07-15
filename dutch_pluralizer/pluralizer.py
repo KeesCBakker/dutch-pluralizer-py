@@ -37,14 +37,14 @@ class AdvancedPluralizationResult:
 
     def __init__(
         self,
-        algoritmic_plural: str,
+        algorithmic_plural: str,
         plural: str,
         suggestions: Tuple[str],
         switched_ending_from: str,
         switched_ending_to: str,
         hunspell_spelled: bool
     ):
-        self.algoritmic_plural = algoritmic_plural
+        self.algorithmic_plural = algorithmic_plural
         self.plural = plural
         self.suggestions = suggestions
         self.switched_ending_from = switched_ending_from

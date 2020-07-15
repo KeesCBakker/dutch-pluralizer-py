@@ -88,7 +88,7 @@ def singularize(plural: str, speller: Hunspell = None) -> str:
     stems = __stem(speller, plural)
 
     # debug
-    print("options", options, "stems", stems)
+    # print("options", options, "stems", stems)
 
     if stems:
         print(stems)

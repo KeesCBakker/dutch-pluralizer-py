@@ -1,7 +1,7 @@
 # numbers in this file are references to headings in this paper:
 # https://sites.uclouvain.be/gramlink/Gramlink-NL/morfologie/pdf/m_nl_02_subst_03_meervoud.pdf
 
-from dutch_pluralizer.pluralizer import pluralize
+from dutch_pluralizer import pluralize
 import pytest
 
 

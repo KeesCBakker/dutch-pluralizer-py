@@ -1,5 +1,4 @@
-from dutch_pluralizer.pluralizer import pluralize_advanced
-from dutch_pluralizer.speller import ensure_hunspell_nl
+from dutch_pluralizer import pluralize_advanced
 from pprint import pprint
 
 import pytest
@@ -9,7 +8,7 @@ import json
 def test_p_hijsen():
     result = pluralize_advanced("hijs")
     #pprint(vars(result))
-    assert result.algoritmic_plural != result.plural
+    assert result.algorithmic_plural != result.plural
     assert result.switched_ending_from == "zen"
     assert result.switched_ending_to == "sen"
 
@@ -17,7 +16,7 @@ def test_p_hijsen():
 def test_p_snede():
     result = pluralize_advanced("snede")
     #pprint(vars(result))
-    assert result.algoritmic_plural != result.plural
+    assert result.algorithmic_plural != result.plural
     assert result.switched_ending_from == "des"
     assert result.switched_ending_to == "den"
 
@@ -25,7 +24,7 @@ def test_p_snede():
 def test_p_drie():
     result = pluralize_advanced("drie")
     #pprint(vars(result))
-    assert result.algoritmic_plural != result.plural
+    assert result.algorithmic_plural != result.plural
     assert result.switched_ending_from == "iën"
     assert result.switched_ending_to == "ieën"
 
@@ -33,7 +32,7 @@ def test_p_drie():
 def test_p_album():
     result = pluralize_advanced("album")
     #pprint(vars(result))
-    assert result.algoritmic_plural != result.plural
+    assert result.algorithmic_plural != result.plural
     assert result.switched_ending_from == "a"
     assert result.switched_ending_to == "ums"
 
@@ -41,28 +40,26 @@ def test_p_album():
 def test_p_cursus():
     result = pluralize_advanced("cursus")
     #pprint(vars(result))
-    assert result.algoritmic_plural != result.plural
+    assert result.algorithmic_plural != result.plural
     assert result.switched_ending_from == "i"
     assert result.switched_ending_to == "ussen"
 
 
 def test_p_oogpotlood():
-    h = ensure_hunspell_nl()
     result = pluralize_advanced("oogpotlood")
-    assert result.algoritmic_plural != result.plural
-    assert result.algoritmic_plural == "oogpotloden"
+    assert result.algorithmic_plural != result.plural
+    assert result.algorithmic_plural == "oogpotloden"
 
 
 def test_p_wenkbrauwgel():
 
-    h = ensure_hunspell_nl()
     result = pluralize_advanced("wenkbrauwgel")
     #pprint(vars(result))
-    assert result.algoritmic_plural != result.plural
-    assert result.algoritmic_plural == "wenkbrauwgels"
+    assert result.algorithmic_plural != result.plural
+    assert result.algorithmic_plural == "wenkbrauwgels"
 
 def pluralize_advanced_algo_result(str: str) -> str:
-    return pluralize_advanced(str).algoritmic_plural
+    return pluralize_advanced(str).algorithmic_plural
 
 
 @pytest.mark.parametrize("singular,plural", [
