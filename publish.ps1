@@ -11,6 +11,7 @@ elseif(git status --porcelain | where {$_ -notmatch '^\?\?'}) {
     exit $LASTEXITCODE
 }
 
+python -m pytest
 bumpversion patch
 rm dist/*
 python setup.py sdist bdist_wheel
