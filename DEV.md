@@ -21,3 +21,15 @@ Some hints on testing:
 1. Run `pipenv run python -m pytest`
 1. Make sure test files are prefixed with `test_`.
 1. To run tests that match the _um_: `pipenv run python -m pytest -k um`. You can add `-vv` for a detailed overview.
+
+
+## Note to self
+Publish:
+
+```bash
+bumpversion patch
+rm dist/*
+python setup.py sdist bdist_wheel
+twine check dist/*
+twine upload dist/*
+```
