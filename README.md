@@ -38,8 +38,8 @@ optional arguments:
 ### API
 The API can be used like this:
 
-```
-from dutch_pluralizer import pluralize, pluralize_advanced, singularize
+```python
+from dutch_pluralizer import pluralize, singularize
 
 # pluralize will return the result or None
 assert pluralize("kaas") == "kazen"
@@ -51,9 +51,10 @@ assert singularize("kaas") == None
 ```
 
 Advanced pluralization will give you more options:
-```
-# advanced pluralization will give you more
-# output:
+
+```python
+from dutch_pluralizer import pluralize, pluralize_advanced, singularize
+
 adv = pluralize_advanced("album")
 
 # the plural
@@ -86,6 +87,30 @@ assert adv.suggestions == ( 'Alba',
 
 ```
 
+Add custom words to the dictionary:
+
+```python
+from dutch_pluralizer import pluralize, singularize
+from dutch_pluralizer.speller import ensure_hunspell_nl
+
+def test_readme_example_3():
+
+    # default dictionary does not understand these words,
+    # as they are not Dutch
+    assert pluralize("fibulatie") == None
+    assert singularize("fibulaties") == None
+
+    # add the words to the dictionary
+    h = ensure_hunspell_nl()
+    h.add("fibulatie")
+    h.add("fibulaties")
+
+    # check again
+    assert pluralize("fibulatie", speller=h) == "fibulaties"
+    assert singularize("fibulaties", speller=h) == "fibulatie"
+```
+
+
 ## Help!? The result is not correct
 I told you it was imperfect! There is stuff this package can and cannot do:
 
@@ -96,6 +121,6 @@ I told you it was imperfect! There is stuff this package can and cannot do:
 
 
 ## Development
-If you want to contribute to local development, please consult <a href="DEV.md">the local development page</a>.
+If you want to contribute to local development, please consult <a href="https://github.com/KeesCBakker/dutch-pluralizer-py/blob/master/DEV.md">the local development page</a>.
 
 

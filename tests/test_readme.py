@@ -1,6 +1,7 @@
 from dutch_pluralizer import pluralize, pluralize_advanced, singularize
+from hunspell import Hunspell
 
-def test_readme_example():
+def test_readme_example_1():
 
     # pluralize will return the result or None
     assert pluralize("kaas") == "kazen"
@@ -10,8 +11,9 @@ def test_readme_example():
     assert singularize("kazen") == "kaas"
     assert singularize("kaas") == None
 
-    # advanced pluralization will give you more
-    # output:
+
+def test_readme_example_2():
+
     adv = pluralize_advanced("album")
 
     # the plural
@@ -41,3 +43,25 @@ def test_readme_example():
                                 'alma',
                                 'alfa',
                                 'Elba')
+
+
+from dutch_pluralizer import pluralize, singularize
+from dutch_pluralizer.speller import ensure_hunspell_nl
+
+def test_readme_example_3():
+
+    # default dictionary does not understand these words,
+    # as they are not Dutch
+    assert pluralize("fibulatie") == None
+    assert singularize("fibulaties") == None
+
+    # add the words to the dictionary
+    h = ensure_hunspell_nl()
+    h.add("fibulatie")
+    h.add("fibulaties")
+
+    # check again
+    assert pluralize("fibulatie", speller=h) == "fibulaties"
+    assert singularize("fibulaties", speller=h) == "fibulatie"
+
+
