@@ -12,13 +12,16 @@ Install from PIP:
 pip install dutch-pluralizer
 ```
 
-**Note on Windows 10**
+**Note on Windows 10** <br/>
 <a href="https://github.com/MSeal/cython_hunspell">CyHunspell</a> is used. To use this package on **Windows 10**, you might need to install <a href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019">Build Tools for Visual Studio 2019</a> and choose the _Windows 10 C++ SDK_ option.
+
+**Note on other Linux installations**<br/>
+Please check <a href="https://github.com/MSeal/cython_hunspell#non-python-dependencies">how you can install Hunspell on Linux</a> if you don't want build Hunspell.
 
 ## CLI usage
 The project can be used as a CLI tool:
 ```
-usage: __main__.py [-h] [-p] [-s] [-pa] [-v] word
+usage: dutch_pluralizer [-h] [-p] [-s] [-pa] [-v] word
 
 Generates Dutch plural and singular nouns in a very imperfect way using Hunspell     
 dictionaries. Why imperfect? Because the Dutch language is full of exceptions.       
