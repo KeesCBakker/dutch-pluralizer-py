@@ -91,7 +91,6 @@ def singularize(plural: str, speller: Hunspell = None) -> str:
     # print("options", options, "stems", stems)
 
     if stems:
-        print(stems)
         return stems[0]
 
     if plural.endswith("s"):
