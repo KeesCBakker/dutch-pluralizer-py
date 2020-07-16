@@ -2,17 +2,17 @@ from typing import Dict
 
 class NounMap:
 
-    def __init__(self, dict: Dict[str, str] = None):
+    def __init__(self, map: Dict[str, str] = None):
         self.__data = {}
-        if dict:
-            self.add_range(dict)
+        self.add_range(map)
 
     def add(self, singular_ending: str, plural_ending: str):
         self.__data[singular_ending] = plural_ending
 
-    def add_range(self, dict: Dict[str, str]):
-        for key in dict.keys():
-            self.__data[key] = dict[key]
+    def add_range(self, map: Dict[str, str]):
+        if map:
+            for key in map.keys():
+                self.__data[key] = map[key]
 
     def get_plural_map(self) -> Dict[str, str]:
         return self.__data

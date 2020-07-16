@@ -36,7 +36,7 @@ def test_advanced_singluar_override_endings(plural, singular):
     adv = singularize_advanced(plural, ending_overrides=overrides)
 
     # debug
-    print(vars(adv))
+    #print(vars(adv))
     
     assert adv.algorithic_singular[0] == singular
 
