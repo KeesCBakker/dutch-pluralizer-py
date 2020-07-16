@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from hunspell import Hunspell
 
 from .pluralizer import pluralize
@@ -54,10 +56,27 @@ def __stem(speller: Hunspell, plural:str) -> [str]:
     return stems
 
 
-def singularize(plural: str, speller: Hunspell = None) -> str:
+class AdvancedSingularizationResult:
+
+    def __init__(
+        self,
+        algorithic_singular: [str],
+        singular: str,
+        suggestions: Tuple[str],
+        hunspell_spelled: bool,
+        could_be_plural: bool,
+    ):
+        self.algorithic_singular = algorithic_singular
+        self.singular = singular
+        self.suggestions = suggestions
+        self.hunspell_spelled = hunspell_spelled
+        self.could_be_plural = could_be_plural
+
+
+def singularize_advanced(plural: str, speller: Hunspell = None) -> AdvancedSingularizationResult:
 
     if not could_be_plural(plural):
-        return None
+        return AdvancedSingularizationResult(None, None, (), False, False)
 
     options = __process_methods(
         plural,
@@ -79,11 +98,10 @@ def singularize(plural: str, speller: Hunspell = None) -> str:
 
     stems = __stem(speller, plural)
 
-
     # return option that is spelled correct
     for option in options:
         if speller.spell(option):
-            return option
+            return AdvancedSingularizationResult(options, option, (), True, True)
 
     stems = __stem(speller, plural)
 
@@ -91,12 +109,12 @@ def singularize(plural: str, speller: Hunspell = None) -> str:
     # print("options", options, "stems", stems)
 
     if stems:
-        return stems[0]
+        return AdvancedSingularizationResult(options, stems[0], stems, True, True)
 
     if plural.endswith("s"):
         singular = plural[0:-1]
         if speller.spell(singular):
-            return singular
+            return AdvancedSingularizationResult(options, singular, stems, True, True)
 
     if plural.endswith("en"):
         singular = plural[0:-2]
@@ -107,7 +125,10 @@ def singularize(plural: str, speller: Hunspell = None) -> str:
             singular = singular[0:-1] + "s"
 
         if speller.spell(singular):
-            return singular
+            return AdvancedSingularizationResult(options, singular, stems, True, True)
+
+    return AdvancedSingularizationResult(options, None, stems, False, True)
 
 
-    return None
+def singularize(plural: str, speller: Hunspell = None) -> str:
+    return singularize_advanced(plural, speller).singular
