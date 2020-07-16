@@ -102,7 +102,7 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
     )
 
     # debug
-    print("options", options)
+    # print("options", options)
     
     if not speller:
         speller = ensure_hunspell_nl()
