@@ -1,6 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-$env:PIPENV_VERBOSITY = '-1'; 
+$env:PIPENV_VERBOSITY = '-1';
+git config --global core.safecrlf false
 
 Write-Host ""
 Write-Host "Cleaning up..." -ForeGroundColor Yellow
