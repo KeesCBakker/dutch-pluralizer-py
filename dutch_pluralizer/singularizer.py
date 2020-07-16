@@ -100,6 +100,9 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
         singularize_with_en_double_vowel,
         singularize_with_en_double_consonant
     )
+
+    # debug
+    print("options", options)
     
     if not speller:
         speller = ensure_hunspell_nl()
@@ -123,6 +126,10 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
         singular = plural[0:-1]
         if speller.spell(singular):
             return AdvancedSingularizationResult(options, singular, stems, True, True)
+        else:
+            # just add it a possible option
+            options.append(singular)
+            return AdvancedSingularizationResult(options, None, stems, False, True)
 
     if plural.endswith("en"):
         singular = plural[0:-2]
@@ -134,6 +141,10 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
 
         if speller.spell(singular):
             return AdvancedSingularizationResult(options, singular, stems, True, True)
+        else:
+            # just add it a possible option
+            options.append(singular)
+            return AdvancedSingularizationResult(options, None, stems, False, True)
 
     return AdvancedSingularizationResult(options, None, stems, False, True)
 

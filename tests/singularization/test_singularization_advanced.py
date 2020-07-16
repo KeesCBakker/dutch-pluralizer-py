@@ -6,6 +6,7 @@ import pytest
 
 @pytest.mark.parametrize("plural,singular", [
     ("wenkbrauwgels", "wenkbrauwgel"),
+    ("badpakjurken", "badpakjurk")
 ])
 def test_advanced_singular_algo(plural, singular):
     assert could_be_plural(plural) == True
@@ -15,7 +16,7 @@ def test_advanced_singular_algo(plural, singular):
     assert adv.hunspell_spelled == False
 
     # debug
-    # print(vars(adv))
+    print(vars(adv))
     
     assert adv.algorithic_singular[0] == singular
 
@@ -25,7 +26,7 @@ def test_advanced_singular_algo(plural, singular):
     ("mode", "mode"),
     ("beenmode", "beenmode"),
     ("kleding", "kleding"),
-    ("badkleding", "badkleding"),
+    ("badkleding", "badkleding")
 ])
 def test_advanced_singluar_override_endings(plural, singular):
 
