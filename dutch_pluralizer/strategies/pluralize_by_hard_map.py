@@ -31,10 +31,9 @@ def pluralize_by_hard_map(singular: str, overrides: NounEndingMap) -> str:
 
     for nouns in [overrides, __hard_map]:
         if nouns:
-            map = nouns.get_plural_map()
-            for key in map:
-                if singular.endswith(key):
-                    return singular[0:0-len(key)] + map[key]
+            plural = nouns.pluralize_by_endings(singular)
+            if plural:
+                return plural
 
     return None
 
@@ -43,9 +42,9 @@ def singularize_by_hard_map(plural: str, overrides: NounEndingMap) -> str:
 
     for nouns in [overrides, __hard_map, __only_for_singularize]:
         if nouns:
-            map = nouns.get_singular_map()
-            for key in map:
-                if plural.endswith(key):
-                    return plural[0:0-len(key)] + map[key]
+            singular = nouns.singularize_by_endings(plural)
+            if singular:
+                return singular
 
     return None
+

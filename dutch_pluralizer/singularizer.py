@@ -122,13 +122,10 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
     if stems:
         return AdvancedSingularizationResult(options, stems[0], stems, True, True)
 
-    if plural.endswith("'s"):
-        singular = plural[0:-2]
-        return create_final_options(singular, speller, options, stems)
-
-    if plural.endswith("s"):
-        singular = plural[0:-1]
-        return create_final_options(singular, speller, options, stems)
+    for ending in ["'s", "s"]:
+        if plural.endswith(ending):
+            singular = plural[0:0-len(ending)]
+            return create_fallback_options(singular, speller, options, stems)
 
     if plural.endswith("en"):
         singular = plural[0:-2]
@@ -138,7 +135,7 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
         elif singular.endswith("z"):
             singular = singular[0:-1] + "s"
 
-        return create_final_options(singular, speller, options, stems)
+        return create_fallback_options(singular, speller, options, stems)
 
     return AdvancedSingularizationResult(options, None, stems, False, True)
 
@@ -147,10 +144,8 @@ def singularize(plural: str, speller: Hunspell = None, ending_overrides: NounEnd
     return singularize_advanced(plural, speller, ending_overrides).singular
 
 
-def create_final_options(singular: str, speller: Hunspell, options:[str], stems:[str]) -> AdvancedSingularizationResult:
-
+def create_fallback_options(singular: str, speller: Hunspell, options:[str], stems:[str]) -> AdvancedSingularizationResult:
     options.append(singular)
-
     if speller.spell(singular):
         return AdvancedSingularizationResult(options, singular, stems, True, True)
     else:

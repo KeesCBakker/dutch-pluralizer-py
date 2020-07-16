@@ -343,7 +343,8 @@ def test_p_9_7_exceptions(singular, plural):
     ("up", "ups"),
     ("vitamine", "vitamines"),
     ("stof", "stoffen"),
-    ("vloeistof", "vloeistoffen")
+    ("vloeistof", "vloeistoffen"),
+    ("lenzenvloeistof", "lenzenvloeistoffen")
 ])
 def test_p_general_cases(singular, plural):
     assert pluralize(singular) == plural
