@@ -20,7 +20,7 @@ __s_replacement_exceptions = create_ends_with_regex(
 __closed_to_open = create_ends_with_regex(
     "bad", "bevel", "dag", "drag", "dak", "gebed",
     "gat", "gebrek", "glaz", "god", "grav", "hertog",
-    "oorlog", "schot", "vat", "slag", "weg")
+    "oorlog", "schot", "vat", "slag", "weg", "uw")
 
 VOWELS = ['a', 'e', 'i', 'o', 'u']
 

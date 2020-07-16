@@ -226,3 +226,14 @@ def test_s_cases(plural, singular):
     assert could_be_plural(plural) == True
     assert singularize(plural) == singular
 
+
+@pytest.mark.parametrize("singular,plural", [
+    ("duw", "duwen"),
+    ("schaduw", "schaduwen"),
+    ("zwaluw", "zwaluwen"),
+    ("leeuw", "leeuwen"),
+    ("touw", "touwen"),
+])
+def test_s_uw(singular, plural):
+    assert could_be_plural(plural) == True
+    assert singularize(plural) == singular

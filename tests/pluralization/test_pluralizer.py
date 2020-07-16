@@ -330,6 +330,17 @@ def test_p_9_7_exceptions(singular, plural):
 
 
 @pytest.mark.parametrize("singular,plural", [
+    ("duw", "duwen"),
+    ("schaduw", "schaduwen"),
+    ("zwaluw", "zwaluwen"),
+    ("leeuw", "leeuwen"),
+    ("touw", "touwen"),
+])
+def test_p_uw(singular, plural):
+    assert pluralize(singular) == plural
+
+
+@pytest.mark.parametrize("singular,plural", [
     ("snee", "sneeën"),
     ("snee", "sneeën"),
     ("assurantie", "assurantiën"),
