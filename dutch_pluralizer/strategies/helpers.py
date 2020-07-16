@@ -49,7 +49,7 @@ def change_last_character(singular: str) -> str:
             not __s_replacement_exceptions.search(singular):
         singular = singular[0:-1] + "z"
 
-    if __closed_to_open.search(singular):
+    if __closed_to_open.search(singular) or len(singular) < 3:
         return singular
 
     if singular[-1] not in VOWELS and \
