@@ -8,7 +8,6 @@ autopep8 = "*"
 pytest = "*"
 twine = "*"
 bumpversion = "*"
-asdkljashlkj3e = "*"
 
 [packages]
 cython = "*"
