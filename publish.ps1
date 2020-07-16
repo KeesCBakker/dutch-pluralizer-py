@@ -1,9 +1,13 @@
 $ErrorActionPreference = "Stop"
 
+$env:PIPENV_VERBOSITY = '-1'; 
+
+Write-Host ""
 Write-Host "Cleaning up..." -ForeGroundColor Yellow
 Remove-Item build -Recurse -ErrorAction Ignore
 Remove-Item dist -Recurse -ErrorAction Ignore
 
+Write-Host ""
 Write-Host "Checking Git status..." -ForeGroundColor Yellow
 if(git status --porcelain | where {$_ -match '^\?\?'}){
     Write-Host "DIRTY: Untracked files exist. Add and commit them first."
@@ -16,20 +20,26 @@ elseif(git status --porcelain | where {$_ -notmatch '^\?\?'}) {
     exit $LASTEXITCODE
 }
 
+Write-Host ""
 Write-Host "Installing (Dev) packages..." -ForeGroundColor Yellow
 pipenv sync --dev
 
+Write-Host ""
 Write-Host "Testing..." -ForeGroundColor Yellow
 python -m pytest
 
+Write-Host ""
 Write-Host "Patch version..." -ForeGroundColor Yellow
 bumpversion patch
 
+Write-Host ""
 Write-Host "Build..." -ForeGroundColor Yellow
 python setup.py sdist bdist_wheel
 twine check dist/*
 
+Write-Host ""
 Write-Host "Distribute..." -ForeGroundColor Yellow
 twine upload dist/*
 
+Write-Host ""
 Write-Host "Done" -ForeGroundColor Green
