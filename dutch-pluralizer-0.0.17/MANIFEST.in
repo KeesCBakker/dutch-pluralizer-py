@@ -1,5 +1,0 @@
-include dutch_pluralizer/dict/*.txt
-include dutch_pluralizer/dict/*.aff
-include dutch_pluralizer/dict/*.dic
-include dutch_pluralizer/dict/*.md
-include dutch_pluralizer/strategies/*.py
