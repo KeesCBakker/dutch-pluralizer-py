@@ -18,9 +18,14 @@ __hard_map = NounEndingMap({
     "serum": "serums",
     "make-up": "make-ups",
     "glas": "glazen",
-    "graf": "graven", # added case for singlar
-    "bh": "bh's"
+    "graf": "graven",  # added case for singlar
+    "bh": "bh's",
 })
+
+__only_for_singularize = NounEndingMap({
+    "ine": "inen"
+})
+
 
 def pluralize_by_hard_map(singular: str, overrides: NounEndingMap) -> str:
 
@@ -32,11 +37,11 @@ def pluralize_by_hard_map(singular: str, overrides: NounEndingMap) -> str:
                     return singular[0:0-len(key)] + map[key]
 
     return None
-    
-    
+
+
 def singularize_by_hard_map(plural: str, overrides: NounEndingMap) -> str:
 
-    for nouns in [overrides, __hard_map]:
+    for nouns in [overrides, __hard_map, __only_for_singularize]:
         if nouns:
             map = nouns.get_singular_map()
             for key in map:

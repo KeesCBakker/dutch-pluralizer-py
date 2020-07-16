@@ -217,7 +217,8 @@ import pytest
     ("krullers", "kruller"),
     ("haarkrullers", "haarkruller"),
     ("serums", "serum"),
-    ("make-ups", "make-up")
+    ("make-ups", "make-up"),
+    ("vitaminen", "vitamine")
 ])
 def test_s_cases(plural, singular):
     assert could_be_plural(plural) == True
