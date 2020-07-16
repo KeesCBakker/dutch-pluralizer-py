@@ -1,6 +1,3 @@
-# numbers in this file are references to headings in this paper:
-# https://sites.uclouvain.be/gramlink/Gramlink-NL/morfologie/pdf/m_nl_02_subst_03_meervoud.pdf
-
 from dutch_pluralizer import singularize, could_be_plural
 import pytest
 
