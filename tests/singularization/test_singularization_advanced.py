@@ -15,7 +15,7 @@ def test_advanced_singular_algo(plural, singular):
     adv = singularize_advanced(plural)
 
     # debug
-    print(vars(adv))
+    # print(vars(adv))
     
     assert adv.algorithic_singular[0] == singular
 
