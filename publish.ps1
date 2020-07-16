@@ -23,11 +23,18 @@ elseif(git status --porcelain | where {$_ -notmatch '^\?\?'}) {
 Write-Host ""
 Write-Host "Installing (Dev) packages..." -ForeGroundColor Yellow
 pipenv sync --dev
+if($LASTEXITCODE -gt 0){
+    Write-Host "Intalling packages failed..." -ForegroundColor Red
+    exit $LASTEXITCODE
+}
 
 Write-Host ""
 Write-Host "Testing..." -ForeGroundColor Yellow
 python -m pytest
-echo $LASTEXITCODE
+if($LASTEXITCODE -gt 0){
+    Write-Host "Testing failed..." -ForegroundColor Red
+    exit $LASTEXITCODE
+}
 
 Write-Host ""
 Write-Host "Patch version..." -ForeGroundColor Yellow
