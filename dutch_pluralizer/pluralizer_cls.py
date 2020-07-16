@@ -1,6 +1,6 @@
 from hunspell import Hunspell
 
-from .mapping import NounMap
+from .mapping import NounEndingMap
 from .pluralizer import (AdvancedPluralizationResult, pluralize,
                          pluralize_advanced)
 from .singularizer import (AdvancedSingularizationResult, could_be_plural,
@@ -10,18 +10,18 @@ from .speller import ensure_hunspell_nl
 
 class Pluralizer:
 
-    def __init__(self, speller: Hunspell = None, ending_overrides: NounMap = None):
+    def __init__(self, speller: Hunspell = None, ending_overrides: NounEndingMap = None):
         super().__init__()
 
         self.__speller = speller or ensure_hunspell_nl()
         self.__ending_overrides = ending_overrides
 
 
-    def add_ending_overrides(self, ending_overrides: NounMap):
+    def add_ending_overrides(self, ending_overrides: NounEndingMap):
 
         if ending_overrides:
             if(self.__ending_overrides == None):
-                self.__ending_overrides = NounMap()
+                self.__ending_overrides = NounEndingMap()
 
             self.__ending_overrides.add_range(
                 ending_overrides.get_plural_map())

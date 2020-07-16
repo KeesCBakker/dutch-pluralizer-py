@@ -73,7 +73,7 @@ def pluralize_advanced_algo_result(str: str) -> str:
     ("pony", "pony's"),
     ("hobby", "hobby's"),
     ("diskjockey", "diskjockeys"),
-    ("essay", "essays"),
+    ("essay", "essays")
 ])
 def test_p_4_adv_long_ending(singular, plural):
     assert pluralize_advanced_algo_result(singular) == plural
@@ -91,4 +91,13 @@ def test_p_4_adv_long_ending(singular, plural):
 ])
 def test_p_adv_f_mv(singular, plural):
     # tests come from: https://onzetaal.nl/taaladvies/fotograven-fotografen/
+    assert pluralize_advanced_algo_result(singular) == plural
+
+
+@pytest.mark.parametrize("singular,plural", [
+    ("bh", "bh's"),
+    ("voedingsbh", "voedingsbh's"),
+    ("chino", "chino's"),
+])
+def test_p_adv_general(singular, plural):
     assert pluralize_advanced_algo_result(singular) == plural

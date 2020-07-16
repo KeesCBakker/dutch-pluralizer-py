@@ -339,6 +339,7 @@ def test_p_9_7_exceptions(singular, plural):
     ("haarkruller", "haarkrullers"),
     ("serum", "serums"),
     ("make-up", "make-ups"),
+    ("bh", "bh's")
 ])
 def test_p_general_cases(singular, plural):
     assert pluralize(singular) == plural

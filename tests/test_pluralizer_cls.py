@@ -1,5 +1,5 @@
 import pytest
-from dutch_pluralizer import Pluralizer, NounMap
+from dutch_pluralizer import Pluralizer, NounEndingMap
 from dutch_pluralizer.speller import new_hunspell_nl
 
 @pytest.mark.parametrize("singular,plural", [
@@ -9,7 +9,7 @@ from dutch_pluralizer.speller import new_hunspell_nl
 ])
 def test_pluralizer_scenarios(singular, plural):
     
-    overrides = NounMap({"argi": "argii"})
+    overrides = NounEndingMap({"argi": "argii"})
     hnspll = new_hunspell_nl()
     hnspll.add("fibulatie")
     hnspll.add("argi")

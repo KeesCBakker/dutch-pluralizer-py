@@ -4,9 +4,9 @@
 # Other words that end up here have plurals that are excepted by
 # Hunspell, but not on VanDale.nl
 
-from ..mapping import NounMap
+from ..mapping import NounEndingMap
 
-__hard_map = NounMap({
+__hard_map = NounEndingMap({
     "gelid": "gelederen",
     "lid": "leden",
     "schip": "schepen",
@@ -18,10 +18,11 @@ __hard_map = NounMap({
     "serum": "serums",
     "make-up": "make-ups",
     "glas": "glazen",
-    "graf": "graven" # added case for singlar
+    "graf": "graven", # added case for singlar
+    "bh": "bh's"
 })
 
-def pluralize_by_hard_map(singular: str, overrides: NounMap) -> str:
+def pluralize_by_hard_map(singular: str, overrides: NounEndingMap) -> str:
 
     for nouns in [overrides, __hard_map]:
         if nouns:
@@ -33,7 +34,7 @@ def pluralize_by_hard_map(singular: str, overrides: NounMap) -> str:
     return None
     
     
-def singularize_by_hard_map(plural: str, overrides: NounMap) -> str:
+def singularize_by_hard_map(plural: str, overrides: NounEndingMap) -> str:
 
     for nouns in [overrides, __hard_map]:
         if nouns:

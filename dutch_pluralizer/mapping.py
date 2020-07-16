@@ -1,6 +1,6 @@
 from typing import Dict
 
-class NounMap:
+class NounEndingMap:
 
     def __init__(self, map: Dict[str, str] = None):
         self.__data = {}

@@ -21,6 +21,11 @@ def singularize_with_s(plural: str) -> str:
         singular = plural[0:-1]
         if plural == pluralize_with_s(singular):
             return singular
+
+    if plural.endswith("'s"):
+        singular = plural[0:-2]
+        if plural == pluralize_with_s(singular):
+            return singular
     
     return None
 
