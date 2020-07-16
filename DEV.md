@@ -27,6 +27,7 @@ Some hints on testing:
 Publish:
 
 ```bash
+pipenv sync --dev
 bumpversion patch
 rm dist/*
 python setup.py sdist bdist_wheel
