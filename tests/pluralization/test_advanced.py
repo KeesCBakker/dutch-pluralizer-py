@@ -98,6 +98,7 @@ def test_p_adv_f_mv(singular, plural):
     ("bh", "bh's"),
     ("voedingsbh", "voedingsbh's"),
     ("chino", "chino's"),
+    ("vloeistof", "vloeistoffen")
 ])
 def test_p_adv_general(singular, plural):
     assert pluralize_advanced_algo_result(singular) == plural

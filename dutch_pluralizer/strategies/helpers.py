@@ -35,8 +35,9 @@ def change_last_character(singular: str) -> str:
             not singular.endswith("graaf") and \
             not singular.endswith("soof") and \
             not singular.endswith("scaaf") and \
-            not singular in ['cenotaaf', 'paraaf']:
-        singular = singular[0:-1] + "v"
+            not singular in ['cenotaaf', 'paraaf'] and \
+            not (singular[-2] in VOWELS and singular[-3] not in VOWELS):
+            singular = singular[0:-1] + "v"
 
     elif __r_Xs.search(singular):
         return singular[0:-2] + "z"

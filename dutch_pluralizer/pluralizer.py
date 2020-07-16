@@ -17,23 +17,6 @@ from .strategies.pluralize_with_en import pluralize_with_en
 from .strategies.pluralize_with_s import pluralize_with_s
 from .strategies.simple import pluralize_heid, pluralize_lui, pluralize_oren
 
-
-def __pluralize(singular: str, ending_overrides: NounEndingMap = None) -> str:
-    return \
-        pluralize_by_hard_map(singular, ending_overrides) or \
-        pluralize_eren(singular) or \
-        pluralize_oren(singular) or \
-        pluralize_heid(singular) or \
-        pluralize_lui(singular) or \
-        pluralize_man(singular) or \
-        pluralize_by_latin(singular) or \
-        pluralize_long_vowel(singular) or \
-        pluralize_bastard(singular) or \
-        pluralize_with_s(singular) or \
-        pluralize_with_en(singular) or \
-        None
-
-
 class AdvancedPluralizationResult:
 
     def __init__(
@@ -51,6 +34,22 @@ class AdvancedPluralizationResult:
         self.switched_ending_from = switched_ending_from
         self.switched_ending_to = switched_ending_to
         self.hunspell_spelled = hunspell_spelled
+
+
+def __pluralize(singular: str, ending_overrides: NounEndingMap = None) -> str:
+    return \
+        pluralize_by_hard_map(singular, ending_overrides) or \
+        pluralize_eren(singular) or \
+        pluralize_oren(singular) or \
+        pluralize_heid(singular) or \
+        pluralize_lui(singular) or \
+        pluralize_man(singular) or \
+        pluralize_by_latin(singular) or \
+        pluralize_long_vowel(singular) or \
+        pluralize_bastard(singular) or \
+        pluralize_with_s(singular) or \
+        pluralize_with_en(singular) or \
+        None
 
 
 def pluralize_advanced(singular: str, speller: Hunspell = None, ending_overrides: NounEndingMap = None) -> AdvancedPluralizationResult:
