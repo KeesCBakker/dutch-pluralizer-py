@@ -8,6 +8,7 @@ autopep8 = "*"
 pytest = "*"
 twine = "*"
 bumpversion = "*"
+bumpversionx = "*"
 
 [packages]
 cython = "*"
