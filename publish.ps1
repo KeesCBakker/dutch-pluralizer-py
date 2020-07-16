@@ -48,6 +48,10 @@ twine check dist/*
 Write-Host ""
 Write-Host "Distribute..." -ForeGroundColor Yellow
 twine upload dist/*
+if($LASTEXITCODE -gt 0){
+    Write-Host "Distribution failed..." -ForegroundColor Red
+    exit $LASTEXITCODE
+}
 
 Write-Host ""
 Write-Host "Done" -ForeGroundColor Green
