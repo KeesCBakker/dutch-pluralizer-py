@@ -2,44 +2,45 @@ $ErrorActionPreference = "Stop"
 
 $env:PIPENV_VERBOSITY = '-1'; 
 
-Write-Host ""
-Write-Host "Cleaning up..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Cleaning up..." -ForeGroundColor Yellow
 Remove-Item build -Recurse -ErrorAction Ignore
 Remove-Item dist -Recurse -ErrorAction Ignore
 
-Write-Host ""
-Write-Host "Checking Git status..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Checking Git status..." -ForeGroundColor Yellow
 if(git status --porcelain | where {$_ -match '^\?\?'}){
-    Write-Host "DIRTY: Untracked files exist. Add and commit them first."
-    Write-Host ""
+    Write-Output "DIRTY: Untracked files exist. Add and commit them first."
+    Write-Output ""
     exit $LASTEXITCODE
 } 
 elseif(git status --porcelain | where {$_ -notmatch '^\?\?'}) {
-    Write-Host "DIRTY: Uncommitted files exist. Commit them first."
-    Write-Host ""
+    Write-Output "DIRTY: Uncommitted files exist. Commit them first."
+    Write-Output ""
     exit $LASTEXITCODE
 }
 
-Write-Host ""
-Write-Host "Installing (Dev) packages..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Installing (Dev) packages..." -ForeGroundColor Yellow
 pipenv sync --dev
 
-Write-Host ""
-Write-Host "Testing..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Testing..." -ForeGroundColor Yellow
 python -m pytest
+Write-Output $LASTEXITCODE
 
-Write-Host ""
-Write-Host "Patch version..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Patch version..." -ForeGroundColor Yellow
 bumpversion patch
 
-Write-Host ""
-Write-Host "Build..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Build..." -ForeGroundColor Yellow
 python setup.py sdist bdist_wheel
 twine check dist/*
 
-Write-Host ""
-Write-Host "Distribute..." -ForeGroundColor Yellow
+Write-Output ""
+Write-Output "Distribute..." -ForeGroundColor Yellow
 twine upload dist/*
 
-Write-Host ""
-Write-Host "Done" -ForeGroundColor Green
+Write-Output ""
+Write-Output "Done" -ForeGroundColor Green
