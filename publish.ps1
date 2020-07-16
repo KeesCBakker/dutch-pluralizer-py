@@ -1,5 +1,8 @@
 $ErrorActionPreference = "Stop"
 
+Remove-Item build -Recurse -ErrorAction Ignore
+Remove-Item dist -Recurse -ErrorAction Ignore
+
 if(git status --porcelain | where {$_ -match '^\?\?'}){
     Write-Host "DIRTY: Untracked files exist. Add and commit them first."
     Write-Host ""
@@ -13,7 +16,6 @@ elseif(git status --porcelain | where {$_ -notmatch '^\?\?'}) {
 
 python -m pytest
 bumpversion patch
-rm dist/*
 python setup.py sdist bdist_wheel
 twine check dist/*
 twine upload dist/*
