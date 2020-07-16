@@ -14,6 +14,8 @@ from .strategies.pluralize_with_en import (
 from .strategies.pluralize_with_s import singularize_with_s
 from .strategies.simple import (singularize_heid, singularize_jes,
                                 singularize_oren)
+                            
+from .mapping import NounMap
 
 __possible_plural_endings = create_ends_with_regex(
     "en", 
@@ -26,9 +28,15 @@ __possible_plural_endings = create_ends_with_regex(
 )
 
 
-def could_be_plural(plural: str) -> bool:
+def could_be_plural(plural: str, ending_overrides: NounMap = None) -> bool:
     if __possible_plural_endings.search(plural):
         return True
+    
+    if ending_overrides:
+        for key in ending_overrides.get_singular_map():
+            if plural.endswith(key):
+                return True
+
     return False
 
 
@@ -73,14 +81,14 @@ class AdvancedSingularizationResult:
         self.could_be_plural = could_be_plural
 
 
-def singularize_advanced(plural: str, speller: Hunspell = None) -> AdvancedSingularizationResult:
+def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides: NounMap = None) -> AdvancedSingularizationResult:
 
-    if not could_be_plural(plural):
+    if not could_be_plural(plural, ending_overrides):
         return AdvancedSingularizationResult(None, None, (), False, False)
 
     options = __process_methods(
         plural,
-        singularize_by_hard_map, # should always be first!
+        lambda l: singularize_by_hard_map(l, ending_overrides), # should always be first!
         singularize_oren,
         singularize_heid,
         singularize_eren,
@@ -130,5 +138,5 @@ def singularize_advanced(plural: str, speller: Hunspell = None) -> AdvancedSingu
     return AdvancedSingularizationResult(options, None, stems, False, True)
 
 
-def singularize(plural: str, speller: Hunspell = None) -> str:
-    return singularize_advanced(plural, speller).singular
+def singularize(plural: str, speller: Hunspell = None, ending_overrides: NounMap = None) -> str:
+    return singularize_advanced(plural, speller, ending_overrides).singular

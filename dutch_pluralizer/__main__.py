@@ -1,9 +1,6 @@
 import argparse
 from pprint import pprint
-from . import pluralize, pluralize_advanced, singularize, could_be_plural
-
-__all__ = ['pluralize', 'pluralize_advanced', 'singularize', 'could_be_plural']
-
+from . import pluralize, pluralize_advanced, singularize, could_be_plural, singularize_advanced
 
 def print_result(answer: str, verbose: bool, action: str, word: str):
     if answer:
@@ -17,8 +14,9 @@ def main():
     parser = argparse.ArgumentParser(description='Generates Dutch plural and singular nouns in a very imperfect way using Hunspell dictionaries. Why imperfect? Because the Dutch language is full of exceptions.')
     parser.add_argument('word', help='The word.')
     parser.add_argument("-p",  "--pluralize", help="pluralizes the word.", action="store_true")
-    parser.add_argument("-s",  "--singularize", help="singularizes the word.", action="store_true")
     parser.add_argument("-pa", "--pluralize_advanced", help="shows advanced pluralization output.", action="store_true")
+    parser.add_argument("-s",  "--singularize", help="singularizes the word.", action="store_true")
+    parser.add_argument("-sa", "--singularize_advanced", help="shows advanced singularization output.", action="store_true")
     parser.add_argument("-v",  "--verbose", help="Shows an error message when a word could not be processed.", action="store_true")
 
     args = parser.parse_args()
@@ -37,6 +35,10 @@ def main():
     
     if args.pluralize_advanced:
         answer = pluralize_advanced(word)
+        pprint(vars(answer))
+
+    if args.singularize_advanced:
+        answer = singularize_advanced(word)
         pprint(vars(answer))
 
 

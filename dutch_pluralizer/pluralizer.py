@@ -3,6 +3,7 @@ from typing import Tuple
 
 from hunspell import Hunspell
 
+from .mapping import NounMap
 from .replacements import (SearchResult, search_by_dictionary,
                            search_by_dictionary_plus_s, search_by_suggestions)
 from .speller import ensure_hunspell_nl, get_plural_nouns
@@ -17,9 +18,9 @@ from .strategies.pluralize_with_s import pluralize_with_s
 from .strategies.simple import pluralize_heid, pluralize_lui, pluralize_oren
 
 
-def __pluralize(singular: str) -> str:
+def __pluralize(singular: str, ending_overrides: NounMap = None) -> str:
     return \
-        pluralize_by_hard_map(singular) or \
+        pluralize_by_hard_map(singular, ending_overrides) or \
         pluralize_eren(singular) or \
         pluralize_oren(singular) or \
         pluralize_heid(singular) or \
@@ -52,12 +53,12 @@ class AdvancedPluralizationResult:
         self.hunspell_spelled = hunspell_spelled
 
 
-def pluralize_advanced(singular: str, speller: Hunspell = None) -> AdvancedPluralizationResult:
+def pluralize_advanced(singular: str, speller: Hunspell = None, ending_overrides: NounMap = None) -> AdvancedPluralizationResult:
 
     if not speller:
         speller = ensure_hunspell_nl()
 
-    plural = __pluralize(singular)
+    plural = __pluralize(singular, ending_overrides)
 
     # empty plural - just stop
     if not plural:
@@ -89,6 +90,6 @@ def pluralize_advanced(singular: str, speller: Hunspell = None) -> AdvancedPlura
     return AdvancedPluralizationResult(plural, None, (), None, None, False)
 
 
-def pluralize(singular: str, speller: Hunspell = None) -> str:
-    result = pluralize_advanced(singular, speller)
+def pluralize(singular: str, speller: Hunspell = None, ending_overrides: NounMap = None) -> str:
+    result = pluralize_advanced(singular, speller, ending_overrides)
     return result.plural
