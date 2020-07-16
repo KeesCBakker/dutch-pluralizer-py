@@ -332,7 +332,7 @@ def test_p_9_7_exceptions(singular, plural):
 @pytest.mark.parametrize("singular,plural", [
     ("snee", "sneeën"),
     ("snee", "sneeën"),
-    ("assurantie", "assurantiën"),
+    ("assurantie", "assurandtiën"),
     ("voetencrème", "voetencrèmes"),
     ("geursample", "geursamples"),
     ("kruller", "krullers"),
