@@ -139,7 +139,11 @@ def test_p_2_eren(singular, plural):
 	("essay", "essays"),
 	("milieu", "milieus"),
 	("taboe", "taboes"),
-	("etui", "etuis")
+	("etui", "etuis"),
+    #("emoji", "emoji's"),
+    ("scampi", "scampi's"),
+    #("blini", "blini's"),
+    #("lasagne", "lasagna"),
 ])
 def test_p_3_bastard_words(singular, plural):
     assert pluralize(singular) == plural
@@ -156,6 +160,9 @@ def test_p_3_bastard_words(singular, plural):
 	("baby", "baby's"),
 	("pony", "pony's"),
 	("hobby", "hobby's"),
+    ("euro", "euro's"),
+    #("soa", "soa's"),
+    #("cfk", "cfk's"),
 ])
 def test_p_4_long_ending(singular, plural):
     assert pluralize(singular) == plural
@@ -174,7 +181,8 @@ def test_p_4_long_ending(singular, plural):
     ("scholier", "scholieren"),
     ("officier", "officieren"),
     ("sergeant", "sergeanten"),
-    ("directeur", "directeuren")
+    ("directeur", "directeuren"),
+    ("directrice", "directrices")
 ])
 def test_p_5_family_and_occupations(singular, plural):
     assert pluralize(singular) == plural
@@ -263,6 +271,8 @@ def test_p_9_2_trema(singular, plural):
     ("hoofdweg", "hoofdwegen"),
     ("verdrag", "verdragen"),
     ("zeeslag", "zeeslagen"),
+    ("smid", "smeden"),
+    ("zilversmid", "zilversmeden")
 ])
 def test_p_9_3(singular, plural):
     assert pluralize(singular) == plural
@@ -316,6 +326,7 @@ def test_p_9_6(singular, plural):
     ("dipsaus", "dipsauzen"),
     ("catalogus", "catalogussen"),
     ("cursus", "cursussen"),
+    ("curriculum", "curricula")
 ])
 def test_p_9_7(singular, plural):
     assert pluralize(singular) == plural
@@ -355,7 +366,12 @@ def test_p_uw(singular, plural):
     ("vitamine", "vitamines"),
     ("stof", "stoffen"),
     ("vloeistof", "vloeistoffen"),
-    ("lenzenvloeistof", "lenzenvloeistoffen")
+    ("lenzenvloeistof", "lenzenvloeistoffen"),
+    ("gluut", "gluten"),
+    ("logé", "logés"),
+    ("logee", "logees"),
+    ("stagiair", "stagiairs"),
+    ("stagiaire", "stagiaires")
 ])
 def test_p_general_cases(singular, plural):
     assert pluralize(singular) == plural

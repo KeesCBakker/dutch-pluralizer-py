@@ -27,7 +27,15 @@ def singularize_with_trema_en(plural: str)->str:
     return None
 
 
-__aaa = create_ends_with_regex("weg", "vat", "schot", "gat", "drag", "bad", "dag", "bevel")
+__aaa = create_ends_with_regex(
+    "bevel",
+    "bad", 
+    "dag", 
+    "drag", 
+    "gat", 
+    "weg", 
+    "vat", 
+    "schot", )
 
 def singularize_with_en_single_vowel(plural: str) -> str:
 
