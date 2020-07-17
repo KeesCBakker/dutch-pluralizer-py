@@ -3,13 +3,26 @@ $ErrorActionPreference = "Stop"
 $env:PIPENV_VERBOSITY = '-1';
 git config --global core.safecrlf false
 
-Write-Host ""
-Write-Host "Cleaning up..." -ForeGroundColor Yellow
+function Print-Header {
+    param( [string]$header )
+    Write-Host ""
+    Write-Host "$header" -ForeGroundColor Yellow
+}
+
+function Check-Failed{
+    param( [string]$header )
+    if($LASTEXITCODE -gt 0){
+        Write-Host "$header" -ForegroundColor Red
+        Write-Host ""
+        exit $LASTEXITCODE
+    }
+}
+
+
 Remove-Item build -Recurse -ErrorAction Ignore
 Remove-Item dist -Recurse -ErrorAction Ignore
 
-Write-Host ""
-Write-Host "Checking Git status..." -ForeGroundColor Yellow
+Print-Header "Checking Git status..."
 if(git status --porcelain | where {$_ -match '^\?\?'}){
     Write-Host "DIRTY: Untracked files exist. Add and commit them first."
     Write-Host ""
@@ -21,38 +34,28 @@ elseif(git status --porcelain | where {$_ -notmatch '^\?\?'}) {
     exit $LASTEXITCODE
 }
 
-Write-Host ""
-Write-Host "Installing (Dev) packages..." -ForeGroundColor Yellow
+Print-Header "Installing (dev) packages..."
 pipenv sync --dev
-if($LASTEXITCODE -gt 0){
-    Write-Host "Intalling packages failed..." -ForegroundColor Red
-    exit $LASTEXITCODE
-}
+Check-Failed "Intalling packages failed..."
 
-Write-Host ""
-Write-Host "Testing..." -ForeGroundColor Yellow
+Print-Header "Testing..."
 python -m pytest
-if($LASTEXITCODE -gt 0){
-    Write-Host "Testing failed..." -ForegroundColor Red
-    exit $LASTEXITCODE
-}
+Check-Failed "Testing failed..."
 
-Write-Host ""
-Write-Host "Patch version..." -ForeGroundColor Yellow
+Print-Header "Patch version..."
 bumpversion patch
+Check-Failed "Patching failed..."
 
-Write-Host ""
-Write-Host "Build..." -ForeGroundColor Yellow
+Print-Header "Build..."
 python setup.py sdist bdist_wheel
+Check-Failed "Setup failed..."
 twine check dist/*
+Check-Failed "Twine check failed..."
 
-Write-Host ""
-Write-Host "Distribute..." -ForeGroundColor Yellow
+
+Print-Header "Distribute..."
 twine upload dist/*
-if($LASTEXITCODE -gt 0){
-    Write-Host "Distribution failed..." -ForegroundColor Red
-    exit $LASTEXITCODE
-}
+Check-Failed "Distribution failed..."
 
 Write-Host ""
 Write-Host "Done" -ForeGroundColor Green
