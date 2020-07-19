@@ -7,6 +7,8 @@
 from ..mapping import NounEndingMap
 
 __hard_map = NounEndingMap({
+    "heid": "heden",
+    "lui": "lieden",
     "gelid": "gelederen",
     "lid": "leden",
     "schip": "schepen",

@@ -284,6 +284,8 @@ def test_p_9_3(singular, plural):
     ("motor", "motoren"),
     ("senator", "senatoren"),
     ("processor", "processoren"),
+    ("oor", "oren"),
+    ("flapoor", "flaporen"),
 ])
 def test_p_9_4(singular, plural):
     assert pluralize(singular) == plural

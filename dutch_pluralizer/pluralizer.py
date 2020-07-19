@@ -13,9 +13,10 @@ from .strategies.pluralize_by_latin import pluralize_by_latin
 from .strategies.pluralize_eren import pluralize_eren
 from .strategies.pluralize_long_vowel import pluralize_long_vowel
 from .strategies.pluralize_man import pluralize_man
+from .strategies.pluralize_oren import pluralize_oren
 from .strategies.pluralize_with_en import pluralize_with_en
 from .strategies.pluralize_with_s import pluralize_with_s
-from .strategies.simple import pluralize_heid, pluralize_lui, pluralize_oren
+
 
 class AdvancedPluralizationResult:
 
@@ -41,8 +42,6 @@ def __pluralize(singular: str, ending_overrides: NounEndingMap = None) -> str:
         pluralize_by_hard_map(singular, ending_overrides) or \
         pluralize_eren(singular) or \
         pluralize_oren(singular) or \
-        pluralize_heid(singular) or \
-        pluralize_lui(singular) or \
         pluralize_man(singular) or \
         pluralize_by_latin(singular) or \
         pluralize_long_vowel(singular) or \

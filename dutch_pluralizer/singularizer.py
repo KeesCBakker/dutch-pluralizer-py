@@ -2,20 +2,18 @@ from typing import Tuple
 
 from hunspell import Hunspell
 
+from .mapping import NounEndingMap
 from .pluralizer import pluralize
 from .speller import ensure_hunspell_nl
 from .strategies.helpers import VOWELS, create_ends_with_regex
 from .strategies.pluralize_by_hard_map import singularize_by_hard_map
 from .strategies.pluralize_by_latin import singularize_by_latin
 from .strategies.pluralize_eren import singularize_eren
+from .strategies.pluralize_oren import singularize_oren
 from .strategies.pluralize_with_en import (
     singularize_with_en_double_consonant, singularize_with_en_double_vowel,
     singularize_with_en_single_vowel, singularize_with_trema_en)
 from .strategies.pluralize_with_s import singularize_with_s
-from .strategies.simple import (singularize_heid, singularize_jes,
-                                singularize_oren)
-                            
-from .mapping import NounEndingMap
 
 __possible_plural_endings = create_ends_with_regex(
     "en", 
@@ -90,9 +88,7 @@ def singularize_advanced(plural: str, speller: Hunspell = None, ending_overrides
         plural,
         lambda l: singularize_by_hard_map(l, ending_overrides), # should always be first!
         singularize_oren,
-        singularize_heid,
         singularize_eren,
-        singularize_jes,
         singularize_by_latin,
         singularize_with_s,
         singularize_with_trema_en,
