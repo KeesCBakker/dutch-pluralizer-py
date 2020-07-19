@@ -23,7 +23,8 @@ __hard_map = NounEndingMap({
     "graf": "graven",  # added case for singlar
     "bh": "bh's",
     "lasagne": "lasagna",
-    "smid": "smeden"
+    "smid": "smeden",
+    "tonic": "tonics"
 })
 
 __only_for_singularize = NounEndingMap({
