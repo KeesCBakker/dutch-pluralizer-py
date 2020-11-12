@@ -81,6 +81,9 @@ def singularize_with_en_double_consonant(plural: str) -> str:
         return None
 
     singular = plural[0:-2]
+    if len(singular) <= 2:
+        return None
+
     if singular[-1] not in VOWELS and \
         singular[-1] == singular[-2] and \
         singular[-3] in VOWELS:

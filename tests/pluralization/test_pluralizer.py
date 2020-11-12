@@ -373,7 +373,8 @@ def test_p_uw(singular, plural):
     ("logé", "logés"),
     ("logee", "logees"),
     ("stagiair", "stagiairs"),
-    ("stagiaire", "stagiaires")
+    ("stagiaire", "stagiaires"),
+    ("een", "enen")
 ])
 def test_p_general_cases(singular, plural):
     assert pluralize(singular) == plural
