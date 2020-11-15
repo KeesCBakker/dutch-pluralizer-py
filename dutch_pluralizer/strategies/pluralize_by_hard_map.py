@@ -1,4 +1,4 @@
-# Yeah, sometimes is is too hard to do it algoritmically, or I'm
+# Yeah, sometimes it is too hard to do it algoritmically, or I'm
 # just way too lazy, so here is a map for all those silly exceptions
 # that we like to have in Dutch.
 # Other words that end up here have plurals that are excepted by
@@ -24,7 +24,10 @@ __hard_map = NounEndingMap({
     "bh": "bh's",
     "lasagne": "lasagna",
     "smid": "smeden",
-    "tonic": "tonics"
+    "tonic": "tonics",
+    "artikel": "artikelen",
+    "middel": "middelen",
+    "voer": "voer"
 })
 
 __only_for_singularize = NounEndingMap({
