@@ -7,7 +7,7 @@ from .mapping import NounEndingMap
 from .replacements import (SearchResult, search_by_dictionary,
                            search_by_dictionary_plus_s, search_by_suggestions)
 from .speller import ensure_hunspell_nl, get_plural_nouns
-from .strategies.pluralize_bastard import pluralize_bastard
+from .strategies.pluralize_bastard_words import pluralize_bastard
 from .strategies.pluralize_by_hard_map import pluralize_by_hard_map
 from .strategies.pluralize_by_latin import pluralize_by_latin
 from .strategies.pluralize_eren import pluralize_eren
