@@ -1,4 +1,4 @@
-    $ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 $env:PIPENV_VERBOSITY = '-1';
 git config --global core.safecrlf false
