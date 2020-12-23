@@ -1,9 +1,14 @@
 import re
-from re import Pattern
 from typing import AnyStr
 
+#! only works in Python 3.7+
+# from re import Pattern
+#def create_ends_with_regex(*args: str) -> Pattern:
+#    s = "|".join(map(re.escape, args))
+#    s = f"({s})$"
+#    return re.compile(s)
 
-def create_ends_with_regex(*args: str) -> Pattern:
+def create_ends_with_regex(*args: str):
     s = "|".join(map(re.escape, args))
     s = f"({s})$"
     return re.compile(s)
