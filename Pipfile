@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 autopep8 = "*"
+atomicwrites  = "*"
 pytest = "*"
 twine = "*"
 bumpversion = "*"
