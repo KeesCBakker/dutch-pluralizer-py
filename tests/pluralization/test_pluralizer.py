@@ -35,7 +35,7 @@ def test_p_base_cases(singular, plural):
     assert pluralize(singular) == plural
 
 
-# tets come from: https://onzetaal.nl/taaladvies/fotograven-fotografen/
+# tests come from: https://onzetaal.nl/taaladvies/fotograven-fotografen/
 @pytest.mark.parametrize("singular,plural", [
     ("autobiograaf", "autobiografen"),
     ("bathyscaaf", "bathyscafen"),

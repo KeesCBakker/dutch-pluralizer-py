@@ -8,7 +8,9 @@ def test_should_not_crash():
 @pytest.mark.parametrize("singular,plural", [
     ("artikel", "artikelen"),
     ("gereedschap", "gereedschappen"),
-    ("middel", "middelen")
+    ("middel", "middelen"),
+    ("box", "boxen"),
+    ("keukengerei", "keukengerei")
 ])
 def test_random_pairs(singular, plural):
     assert pluralize(singular) == plural

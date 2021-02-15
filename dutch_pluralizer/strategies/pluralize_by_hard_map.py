@@ -27,7 +27,9 @@ __hard_map = NounEndingMap({
     "tonic": "tonics",
     "artikel": "artikelen",
     "middel": "middelen",
-    "voer": "voer"
+    "voer": "voer",
+    "gerei": "gerei",
+    "box": "boxen"
 })
 
 __only_for_singularize = NounEndingMap({
