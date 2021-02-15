@@ -10,6 +10,7 @@ def test_should_not_crash():
     ("gereedschap", "gereedschappen"),
     ("middel", "middelen"),
     ("box", "boxen"),
+    ("garagebox", "garageboxen"),
     ("keukengerei", "keukengerei")
 ])
 def test_random_pairs(singular, plural):
