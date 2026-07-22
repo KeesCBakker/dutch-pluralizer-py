@@ -1,6 +1,6 @@
 # Dutch Noun Pluralizer in Python
 
-Generates plural and singular nouns in a _very imperfect way_ using <a href="https://github.com/MSeal/cython_hunspell">CyHunspell</a> and OpenTaal dictionaries and <a href="https://github.com/OpenTaal/opentaal-wordlist">word lists</a>. Why imperfect? Because the Dutch language is full of exceptions.
+Generates plural and singular nouns in a _very imperfect way_ using Hunspell and OpenTaal dictionaries and <a href="https://github.com/OpenTaal/opentaal-wordlist">word lists</a>. Why imperfect? Because the Dutch language is full of exceptions.
 
 The algorithm is based on the document <a href="https://sites.uclouvain.be/gramlink/Gramlink-NL/morfologie/pdf/m_nl_02_subst_03_meervoud.pdf">"Basismorfologie. Het meervoud in het Nederlands" (Dutch)</a> of the <a href="https://uclouvain.be/en/index.html">Université catholique de Louvain</a>.
 
@@ -8,16 +8,20 @@ _Note: I'm a .NET developer that does Python in my free time. I'm **not** a ling
 
 ## Installation
 
-**Python version:** This package requires **Python >=3.6, <3.10** due to the underlying
-<a href="https://github.com/MSeal/cython_hunspell">CyHunspell</a> binding only supporting up to Python 3.9.
+**Python version:** This package requires **Python >=3.6**.
 
 Install from PIP:
 ```
 pip install dutch-pluralizer
 ```
 
-Note that CyHunspell ships pre-built wheels for Windows, Linux, and macOS, so no
-compilation or system dependencies are required.
+### System dependencies
+
+The package requires **libhunspell** (the C library, not the CLI):
+
+- **Debian/Ubuntu:** `apt-get install libhunspell-dev`
+- **macOS:** `brew install hunspell`
+- **Windows:** Install a pre-built `libhunspell` binary or use WSL.
 
 ## CLI usage
 The project can be used as a CLI tool:

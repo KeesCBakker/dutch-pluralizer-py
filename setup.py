@@ -1,13 +1,9 @@
 import pathlib
 from setuptools import setup
 
-# The directory containing this file
 HERE = pathlib.Path(__file__).parent
-
-# The text of the README file
 README = (HERE / "README.md").read_text()
 
-# This call to setup() does all the work
 setup(
     name="dutch-pluralizer",
     version="0.0.39",
@@ -32,7 +28,7 @@ setup(
     ],
     packages=["dutch_pluralizer"],
     include_package_data=True,
-    install_requires=[],
+    install_requires=["cffi>=1.15.0"],
     entry_points={
         "console_scripts": [
             "dutch_pluralizer=dutch_pluralizer.__main__:main",
