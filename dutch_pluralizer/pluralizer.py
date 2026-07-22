@@ -1,7 +1,7 @@
 import re
 from typing import Tuple
 
-from hunspell import Hunspell
+from .speller import Hunspell
 
 from .mapping import NounEndingMap
 from .replacements import (SearchResult, search_by_dictionary,

@@ -1,8 +1,8 @@
-from dutch_pluralizer.speller import new_hunspell_nl
+from dutch_pluralizer.speller import ensure_hunspell_nl
 
 def test_speller():
 
-    hnspll = new_hunspell_nl()
+    hnspll = ensure_hunspell_nl()
 
     hnspll.add("fibulatie")
     assert hnspll.spell("fibulatie") == True

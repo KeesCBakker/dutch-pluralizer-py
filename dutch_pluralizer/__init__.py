@@ -3,7 +3,7 @@ __version__ = "0.0.39"
 __all__ = ['pluralize', 'pluralize_advanced', 'singularize',
            'could_be_plural', 'singularize_advanced', 'NounEndingMap', 'Pluralizer']
 
-from hunspell import Hunspell
+from .speller import Hunspell
 
 from .mapping import NounEndingMap
 from .pluralizer import pluralize, pluralize_advanced

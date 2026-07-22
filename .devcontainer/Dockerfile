@@ -1,8 +1,7 @@
-FROM python:3.9-slim
+FROM python:3.12-slim
 
-# Install system dependencies for building hunspell bindings
+# Install system dependency: libhunspell
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
     libhunspell-dev \
     hunspell \
     && rm -rf /var/lib/apt/lists/*
@@ -11,8 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Upgrade pip and install build dependencies
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel cython
+# Upgrade pip
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Set working directory
 WORKDIR /workspaces/dutch-pluralizer-py

@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from hunspell import Hunspell
+from .speller import Hunspell
 
 from .mapping import NounEndingMap
 from .pluralizer import pluralize

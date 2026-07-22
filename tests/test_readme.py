@@ -1,5 +1,5 @@
 from dutch_pluralizer import pluralize, pluralize_advanced, singularize
-from hunspell import Hunspell
+from dutch_pluralizer.speller import Hunspell
 
 def test_readme_example_1():
 

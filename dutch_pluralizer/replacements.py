@@ -1,5 +1,5 @@
 from typing import Tuple, Union
-from hunspell import Hunspell
+from .speller import Hunspell
 
 __ending_pairs = [{
     "sen": "zen",
