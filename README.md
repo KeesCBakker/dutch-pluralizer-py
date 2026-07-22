@@ -7,16 +7,17 @@ The algorithm is based on the document <a href="https://sites.uclouvain.be/graml
 _Note: I'm a .NET developer that does Python in my free time. I'm **not** a linguist, I just work for a Dutch company. Hence: this **must** be a very imperfect way of doing this._ If you have good ideas, I welcome them, just open an issue.
 
 ## Installation
+
+**Python version:** This package requires **Python >=3.6, <3.10** due to the underlying
+<a href="https://github.com/MSeal/cython_hunspell">CyHunspell</a> binding only supporting up to Python 3.9.
+
 Install from PIP:
 ```
 pip install dutch-pluralizer
 ```
 
-**Note on Windows 10** <br/>
-<a href="https://github.com/MSeal/cython_hunspell">CyHunspell</a> is used. To use this package on **Windows 10**, you might need to install <a href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019">Build Tools for Visual Studio 2019</a> and choose the _Windows 10 C++ SDK_ option.
-
-**Note on other Linux installations**<br/>
-Please check <a href="https://github.com/MSeal/cython_hunspell#non-python-dependencies">how you can install Hunspell on Linux</a> if you don't want build Hunspell.
+Note that CyHunspell ships pre-built wheels for Windows, Linux, and macOS, so no
+compilation or system dependencies are required.
 
 ## CLI usage
 The project can be used as a CLI tool:
@@ -124,6 +125,12 @@ I told you it was imperfect! There is stuff this package can and cannot do:
 
 
 ## Development
-If you want to contribute to local development, please consult <a href="https://github.com/KeesCBakker/dutch-pluralizer-py/blob/master/DEV.md">the local development page</a>.
+
+A <a href="https://code.visualstudio.com/docs/devcontainers/containers">devcontainer</a>
+configuration is provided for a consistent development environment. Open the project
+in Visual Studio Code with the Dev Containers extension and it will automatically
+build and set up the container.
+
+Alternatively, see <a href="https://github.com/KeesCBakker/dutch-pluralizer-py/blob/master/DEV.md">DEV.md</a> for manual setup instructions.
 
 
