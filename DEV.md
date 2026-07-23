@@ -1,36 +1,49 @@
 # Local Development
 
 ## Stack
-I'm using the following stack to develop this package:
-- <a href="https://pypi.org/project/pipenv/">Pipenv</a>
-- <a href="https://code.visualstudio.com/">Visual Studio Code</a>
 
-## Kickstart local development
-Please do the following:
+- <a href="https://code.visualstudio.com/">Visual Studio Code</a> with <a href="https://code.visualstudio.com/docs/devcontainers/containers">Dev Containers</a>
+- Python 3.14 (via devcontainer)
 
-1. Make sure you have <a href="https://pypi.org/project/pipenv/">Pipenv</a> installed.
-1. Create virtual env: `pipenv --python 3.8`
-1. If you are using Visual Studio code, run `pipenv run python -c "import sys;print(sys.executable)"` and add the path to `python.pythonPath` in your `.vscode\settings.json` file.
-1. Install dependencies using: `pipenv sync --dev`.
-1. To update depencencies to the latest version: `pipenv update`.
+## Quick start
 
-## Trigger tests
-Some hints on testing:
+### Using the devcontainer (recommended)
 
-1. Make sure your local development is set up correctly.
-1. Run `pipenv run python -m pytest`
-1. Make sure test files are prefixed with `test_`.
-1. To run tests that match the _um_: `pipenv run python -m pytest -k um`. You can add `-vv` for a detailed overview.
+1. Open the project in Visual Studio Code.
+2. When prompted, click **Reopen in Container**. The devcontainer will build automatically with all dependencies installed.
+3. Run tests: `python -m pytest`
 
+### Manual setup
 
-## Note to self
-Publish:
+1. Make sure you have **libhunspell** installed:
+   - **Debian/Ubuntu:** `sudo apt-get install libhunspell-dev`
+   - **macOS:** `brew install hunspell`
+   - **Windows:** Use WSL or install a pre-built binary.
+2. Create a virtual environment: `python -m venv venv`
+3. Activate it: `.\venv\Scripts\Activate` (Windows) or `source venv/bin/activate` (Linux/macOS)
+4. Install dependencies: `pip install -r requirements-dev.txt`
+5. Install the package in editable mode: `pip install -e .`
+6. Run tests: `python -m pytest`
+
+## Testing
+
+- Run all tests: `python -m pytest`
+- Run tests matching a keyword: `python -m pytest -k um` (add `-vv` for detail)
+- Test files must be prefixed with `test_`.
+
+## Publishing
 
 ```bash
-pipenv sync --dev
+# 1. run tests
+python -m pytest
+
+# 2. bump version
 bumpversion patch
-rm dist/*
-python setup.py sdist bdist_wheel
+
+# 3. build
+python -m build
 twine check dist/*
+
+# 4. upload to PyPI
 twine upload dist/*
 ```
