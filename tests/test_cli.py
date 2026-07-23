@@ -55,6 +55,13 @@ def test_cli_stdin_pipe():
 
 
 @pytest.mark.skipif(not _hunspell_available, reason="libhunspell not available")
+def test_cli_stdin_consonant_doubling():
+    result = run_cli(stdin="kaas\nhuis\nvoetbal\n")
+    assert result.returncode == 0
+    assert result.stdout.splitlines() == ["kazen", "huizen", "voetballen"]
+
+
+@pytest.mark.skipif(not _hunspell_available, reason="libhunspell not available")
 def test_cli_stdin_failed_word_prints_empty_line():
     result = run_cli(stdin="kaas\nxyzzy\n")
     lines = result.stdout.splitlines()
@@ -73,9 +80,9 @@ def test_cli_stdin_empty_line_prints_empty_line():
 
 @pytest.mark.skipif(not _hunspell_available, reason="libhunspell not available")
 def test_cli_stdin_singularize():
-    result = run_cli("-s", stdin="kazen\nboeken\n")
+    result = run_cli("-s", stdin="kazen\nboeken\nhuizen\n")
     assert result.returncode == 0
-    assert result.stdout.splitlines() == ["kaas", "boek"]
+    assert result.stdout.splitlines() == ["kaas", "boek", "huis"]
 
 
 @pytest.mark.skipif(not _hunspell_available, reason="libhunspell not available")
