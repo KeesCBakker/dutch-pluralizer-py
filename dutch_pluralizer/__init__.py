@@ -1,4 +1,4 @@
-__version__ = "0.0.42"
+__version__ = "0.0.43"
 
 __all__ = ['pluralize', 'pluralize_advanced', 'singularize',
            'could_be_plural', 'singularize_advanced', 'NounEndingMap', 'Pluralizer']

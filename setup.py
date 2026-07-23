@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="dutch-pluralizer",
-    version="0.0.42",
+    version="0.0.43",
     description="Generates Dutch plural and singular nouns in a very imperfect way using Hunspell dictionaries. Why imperfect? Because the Dutch language is full of exceptions.",
     long_description=README,
     long_description_content_type="text/markdown",
