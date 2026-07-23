@@ -20,10 +20,13 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libhunspell-dev
 
       - name: Install Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
+          cache-dependency-path: |
+            setup.py
+            requirements-dev.txt
 
       - name: Install dependencies
         run: |
