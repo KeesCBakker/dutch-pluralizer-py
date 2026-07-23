@@ -11,5 +11,4 @@ twine = "*"
 bumpversion = "*"
 
 [packages]
-cython = "*"
-cyhunspell = "*"
+cffi = ">=1.15.0"
