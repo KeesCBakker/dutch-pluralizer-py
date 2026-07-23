@@ -33,6 +33,7 @@ __aaa = create_ends_with_regex(
     "dag", 
     "drag", 
     "gat", 
+    "oorlog",
     "weg", 
     "vat", 
     "schot", )

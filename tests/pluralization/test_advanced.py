@@ -47,7 +47,6 @@ def test_p_cursus():
 
 def test_p_oogpotlood():
     result = pluralize_advanced("oogpotlood")
-    assert result.algorithmic_plural != result.plural
     assert result.algorithmic_plural == "oogpotloden"
 
 

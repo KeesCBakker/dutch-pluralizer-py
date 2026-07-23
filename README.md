@@ -1,6 +1,6 @@
 # Dutch Noun Pluralizer in Python
 
-Generates plural and singular nouns in a _very imperfect way_ using Hunspell and OpenTaal dictionaries and <a href="https://github.com/OpenTaal/opentaal-wordlist">word lists</a>. Why imperfect? Because the Dutch language is full of exceptions.
+Generates plural and singular nouns in a _very imperfect way_ using Hunspell and <a href="https://github.com/OpenTaal/opentaal-hunspell">OpenTaal dictionaries</a> (v2.20.23, 2023-03-10) and <a href="https://github.com/OpenTaal/opentaal-wordlist">word lists</a>. Why imperfect? Because the Dutch language is full of exceptions.
 
 The algorithm is based on the document <a href="https://sites.uclouvain.be/gramlink/Gramlink-NL/morfologie/pdf/m_nl_02_subst_03_meervoud.pdf">"Basismorfologie. Het meervoud in het Nederlands" (Dutch)</a> of the <a href="https://uclouvain.be/en/index.html">Université catholique de Louvain</a>.
 
