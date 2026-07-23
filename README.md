@@ -26,21 +26,25 @@ The package requires **libhunspell** (the C library, not the CLI):
 ## CLI usage
 The project can be used as a CLI tool:
 ```
-usage: dutch_pluralizer [-h] [-p] [-s] [-pa] [-v] word
+usage: python -m dutch_pluralizer [-h] [-p] [-pa] [-s] [-sa] [-v] word
 
-Generates Dutch plural and singular nouns in a very imperfect way using Hunspell     
-dictionaries. Why imperfect? Because the Dutch language is full of exceptions.       
+Generates Dutch plural and singular nouns in a very imperfect way using
+Hunspell dictionaries. Why imperfect? Because the Dutch language is full of
+exceptions.
 
 positional arguments:
   word                  The word.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -p, --pluralize       pluralizes the word.
-  -s, --singularize     singularizes the word.
   -pa, --pluralize_advanced
                         shows advanced pluralization output.
-  -v, --verbose         Shows an error message when a word could not be processed.   
+  -s, --singularize     singularizes the word.
+  -sa, --singularize_advanced
+                        shows advanced singularization output.
+  -v, --verbose         Shows an error message when a word could not be
+                        processed.
 ```
 
 ### API
