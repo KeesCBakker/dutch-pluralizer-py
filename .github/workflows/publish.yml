@@ -12,11 +12,11 @@ on:
           - docker
           - package+docker
       bump:
-        description: 'Version bump type (none = keep current)'
+        description: 'Version bump type (skip = keep current)'
         default: patch
         type: choice
         options:
-          - none
+          - skip
           - patch
           - minor
           - major
@@ -78,11 +78,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Bump version
-        if: ${{ github.event.inputs.bump != 'none' }}
+        if: ${{ github.event.inputs.bump != 'skip' }}
         run: bumpversion ${{ github.event.inputs.bump }}
 
       - name: Push version bump and tag
-        if: ${{ github.event.inputs.bump != 'none' }}
+        if: ${{ github.event.inputs.bump != 'skip' }}
         run: git push origin master --follow-tags
 
       - name: Build package
