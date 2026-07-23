@@ -3,11 +3,20 @@ name: Publish
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'What to publish'
+        default: package+docker
+        type: choice
+        options:
+          - package
+          - docker
+          - package+docker
       bump:
-        description: 'Version bump type'
+        description: 'Version bump type (none = keep current)'
         default: patch
         type: choice
         options:
+          - none
           - patch
           - minor
           - major
@@ -39,13 +48,12 @@ jobs:
         run: python -m pytest --tb=short -q
 
   publish:
+    if: ${{ github.event.inputs.mode == 'package' || github.event.inputs.mode == 'package+docker' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
       id-token: write
     needs: test
-    outputs:
-      version: ${{ steps.version.outputs.tag }}
 
     steps:
       - uses: actions/checkout@v7
@@ -70,14 +78,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Bump version
+        if: ${{ github.event.inputs.bump != 'none' }}
         run: bumpversion ${{ github.event.inputs.bump }}
 
       - name: Push version bump and tag
+        if: ${{ github.event.inputs.bump != 'none' }}
         run: git push origin master --follow-tags
-
-      - name: Get tag from setup.py
-        id: version
-        run: echo "tag=v$(python setup.py --version)" >> $GITHUB_OUTPUT
 
       - name: Build package
         run: |
@@ -87,21 +93,30 @@ jobs:
       - name: Upload to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 
+      - name: Get tag
+        id: version
+        run: echo "tag=v$(python setup.py --version)" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         run: gh release create ${{ steps.version.outputs.tag }} dist/* --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
 
   docker:
+    if: ${{ github.event.inputs.mode == 'docker' || github.event.inputs.mode == 'package+docker' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
       id-token: write
-    needs: publish
+    needs: [test, publish]
 
     steps:
       - uses: actions/checkout@v7
+
+      - name: Get version
+        id: version
+        run: echo "tag=v$(python setup.py --version)" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -122,4 +137,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ needs.publish.outputs.version }}
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.tag }}
