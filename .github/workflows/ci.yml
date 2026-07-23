@@ -53,3 +53,14 @@ jobs:
 
       - name: Run tests in dev container
         run: docker run --rm dutch-pluralizer-dev python -m pytest --tb=short -q
+
+  dockerfile-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build Dockerfile (test stage)
+        run: docker build -t dutch-pluralizer-test --target test .
+
+      - name: Run tests in container
+        run: docker run --rm dutch-pluralizer-test
