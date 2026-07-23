@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  matrix-test:
+  python-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -44,6 +44,7 @@ jobs:
           twine check dist/*
 
   devcontainer-test:
+    needs: python-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -55,6 +56,7 @@ jobs:
         run: docker run --rm dutch-pluralizer-dev python -m pytest --tb=short -q
 
   dockerfile-test:
+    needs: python-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
