@@ -4,11 +4,11 @@ Generates plural and singular nouns in a _very imperfect way_ using Hunspell and
 
 The algorithm is based on the document <a href="https://sites.uclouvain.be/gramlink/Gramlink-NL/morfologie/pdf/m_nl_02_subst_03_meervoud.pdf">"Basismorfologie. Het meervoud in het Nederlands" (Dutch)</a> of the <a href="https://uclouvain.be/en/index.html">Université catholique de Louvain</a>.
 
-_Note: I'm a .NET developer that does Python in my free time. I'm **not** a linguist, I just work for a Dutch company. Hence: this **must** be a very imperfect way of doing this._ If you have good ideas, I welcome them, just open an issue.
+_Note: I'm a .NET developer that does Python in my free time. I'm **not** a linguist, I just work for a Dutch company. Hence: this **must** be a very imperfect way of doing this._ If you have good ideas, I welcome them — just open an issue on <a href="https://github.com/KeesCBakker/dutch-pluralizer-py/issues">GitHub</a>.
 
 ## Installation
 
-**Python version:** This package requires **Python >=3.6**.
+**Python version:** This package requires **Python >=3.7**.
 
 Install from PIP:
 ```
@@ -74,7 +74,7 @@ assert adv.plural == 'albums'
 assert adv.algorithmic_plural == 'alba'
 
 # indicates that end result was found in Hunspell
-adv.hunspell_spelled = True
+assert adv.hunspell_spelled == True
 
 # the plural was found by replacement of 
 # 'a' to 'ums'

@@ -14,7 +14,7 @@ setup(
     author="Kees C. Bakker / KeesTalksTech",
     author_email="info@keestalkstech.com",
     license="MIT",
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.6",
