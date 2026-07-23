@@ -14,10 +14,9 @@ setup(
     author="Kees C. Bakker / KeesTalksTech",
     author_email="info@keestalkstech.com",
     license="MIT",
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     classifiers=[
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",

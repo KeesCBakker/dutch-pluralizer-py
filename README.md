@@ -8,7 +8,7 @@ _Note: I'm a .NET developer that does Python in my free time. I'm **not** a ling
 
 ## Installation
 
-**Python version:** This package requires **Python >=3.7**. The devcontainer uses **Python 3.14**.
+**Python version:** This package requires **Python >=3.8**. The devcontainer uses **Python 3.14**.
 
 Install from PIP:
 ```
