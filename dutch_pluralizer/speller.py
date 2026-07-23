@@ -137,7 +137,7 @@ h_loaded = False
 
 
 def __resolve_path(sub: str) -> str:
-    base_path = Path(__resolve_path.__code__.co_filename)
+    base_path = Path(__file__)
     path = (base_path / sub).resolve()
     return str(path)
 
