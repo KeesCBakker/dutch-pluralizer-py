@@ -32,7 +32,7 @@ $ python -m dutch_pluralizer -p kaas
 kazen
 ```
 
-See [docs/CLI.md](docs/CLI.md) for the full CLI reference with all options
+See [docs/CLI.md](https://github.com/KeesCBakker/dutch-pluralizer-py/blob/master/docs/CLI.md) for the full CLI reference with all options
 and output examples.
 
 ## API
