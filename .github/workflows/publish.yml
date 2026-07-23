@@ -51,13 +51,15 @@ jobs:
         run: echo "tag=v$(python setup.py --version)" >> $GITHUB_OUTPUT
 
       - name: Build package
-        run: python -m build
+        run: |
+          python -m build
+          twine check dist/*
 
       - name: Upload to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: twine upload dist/*
+        run: twine upload --verbose dist/*
 
       - name: Create GitHub Release
         run: gh release create ${{ steps.version.outputs.tag }} dist/* --generate-notes
