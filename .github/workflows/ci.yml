@@ -42,3 +42,14 @@ jobs:
           pip install build twine
           python -m build
           twine check dist/*
+
+  devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build dev container
+        run: docker build -t dutch-pluralizer-dev -f .devcontainer/Dockerfile .
+
+      - name: Run tests in dev container
+        run: docker run --rm dutch-pluralizer-dev python -m pytest --tb=short -q
