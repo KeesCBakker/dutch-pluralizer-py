@@ -128,6 +128,6 @@ configuration is provided for a consistent development environment. Open the pro
 in Visual Studio Code with the Dev Containers extension and it will automatically
 build and set up the container.
 
-Alternatively, see <a href="https://github.com/KeesCBakker/dutch-pluralizer-py/blob/master/DEV.md">DEV.md</a> for manual setup instructions.
+Alternatively, see <a href="https://github.com/KeesCBakker/dutch-pluralizer-py/blob/master/docs/DEV.md">DEV.md</a> for manual setup instructions.
 
 
