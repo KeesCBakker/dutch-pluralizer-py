@@ -1,71 +1,30 @@
-FROM python:3.14-alpine AS base
+FROM python:3.13-alpine AS builder
 
-RUN apk add --no-cache hunspell-dev
-
-FROM base AS ghcr
+RUN apk add --no-cache hunspell-dev libffi-dev build-base
 
 COPY . /build
-RUN pip install --no-cache-dir /build && \
-    rm -rf \
-        /usr/local/lib/python3.14/site-packages/pip* \
-        /usr/local/lib/python3.14/site-packages/setuptools* \
-        /usr/local/lib/python3.14/site-packages/wheel* \
-        /usr/local/bin/pip* \
-        /usr/local/bin/idle* \
-        /usr/local/bin/pydoc* \
-        /usr/local/bin/*.cfg \
-        /usr/local/bin/python*-config \
-        /usr/include \
-        /usr/lib/pkgconfig \
-        /usr/share/apk \
-        /usr/share/aclocal \
-        /usr/share/udhcpc \
-        /root/.cache \
-        /build
+RUN pip install --no-cache-dir --target=/deps /build && \
+    rm -rf /deps/pip* /deps/setuptools* /deps/wheel* /root/.cache ~/.cache /build
 
-ENTRYPOINT ["python", "-m", "dutch_pluralizer"]
+FROM python:3.13-alpine AS test
 
-FROM base AS test
+RUN apk add --no-cache libhunspell libffi && \
+    ln -s libhunspell-1.7.so.0 /usr/lib/libhunspell-1.7.so
 
+ENV PYTHONPATH=/deps
+COPY --from=builder /deps /deps
 COPY . /build
-RUN pip install --no-cache-dir pytest /build && \
-    rm -rf \
-        /usr/local/lib/python3.14/site-packages/pip* \
-        /usr/local/lib/python3.14/site-packages/setuptools* \
-        /usr/local/lib/python3.14/site-packages/wheel* \
-        /usr/local/bin/pip* \
-        /usr/local/bin/idle* \
-        /usr/local/bin/pydoc* \
-        /usr/local/bin/*.cfg \
-        /usr/local/bin/python*-config \
-        /usr/include \
-        /usr/lib/pkgconfig \
-        /usr/share/apk \
-        /usr/share/aclocal \
-        /usr/share/udhcpc \
-        /root/.cache \
-        /build
+RUN pip install --no-cache-dir pytest && \
+    python -m pytest /build/tests
 
-COPY tests /tests
-CMD ["python", "-m", "pytest", "/tests"]
+FROM python:3.13-alpine AS ghcr
 
-FROM base AS runtime
+RUN apk add --no-cache libhunspell libffi && \
+    ln -s libhunspell-1.7.so.0 /usr/lib/libhunspell-1.7.so
 
-RUN pip install --no-cache-dir dutch-pluralizer && \
-    rm -rf \
-        /usr/local/lib/python3.14/site-packages/pip* \
-        /usr/local/lib/python3.14/site-packages/setuptools* \
-        /usr/local/lib/python3.14/site-packages/wheel* \
-        /usr/local/bin/pip* \
-        /usr/local/bin/idle* \
-        /usr/local/bin/pydoc* \
-        /usr/local/bin/*.cfg \
-        /usr/local/bin/python*-config \
-        /usr/include \
-        /usr/lib/pkgconfig \
-        /usr/share/apk \
-        /usr/share/aclocal \
-        /usr/share/udhcpc \
-        /root/.cache
+COPY --from=builder /deps /deps
 
-ENTRYPOINT ["python", "-m", "dutch_pluralizer"]
+ENV PYTHONPATH=/deps
+ENTRYPOINT ["python3", "-m", "dutch_pluralizer"]
+
+FROM ghcr AS runtime

@@ -7,10 +7,13 @@ test:
 
 .PHONY: test-docker
 test-docker:
-	docker build -t dutch-pluralizer-test --target test .
-	docker run --rm dutch-pluralizer-test
+	docker build --target test .
 
 .PHONY: test-shell
 test-shell:
 	docker build -t $(IMAGE_NAME) -f .devcontainer/Dockerfile .
 	docker run --rm -it $(IMAGE_NAME) bash
+
+.PHONY: build
+build:
+	docker build -t dutch-pluralizer .
