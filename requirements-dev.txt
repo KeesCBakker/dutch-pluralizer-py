@@ -9,3 +9,7 @@ twine>=4.0.0
 bumpversion>=0.6.0
 autopep8>=2.0.0
 atomicwrites>=1.4.0
+notebook>=7.0.0
+ipykernel>=6.0.0
+inflect>=7.0.0
+pandas>=2.0.0
