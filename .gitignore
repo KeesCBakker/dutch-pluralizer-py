@@ -3,6 +3,7 @@
 .env
 *.temp.py
 tmp/
+notebooks/data/*_output.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
