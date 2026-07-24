@@ -1,2 +1,2 @@
 [MESSAGES CONTROL]
-disable=wrong-import-position
+disable=wrong-import-position,invalid-name
